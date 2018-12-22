@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://getbootstrap.com/docs/4.1/examples/album/ -->
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="#">
+    <title>Days of Future Past</title>
+    <!-- Bootstrap core CSS -->
+    <link href="./Album example for Bootstrap_files/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="./Album example for Bootstrap_files/album.css" rel="stylesheet">
+	<script type="text/javascript" src="preview/js/jquery.min.js"></script>  <!-- Photo preview -->
+	<script type="text/javascript" src="lib/aws-sdk.min.js"></script>
+	<script type="text/javascript" src="lib/aws-cognito-sdk.min.js"></script>
+	<script type="text/javascript" src="lib/amazon-cognito-identity.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+	<script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+	<script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+	<script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+	<script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+	<script type="text/javascript" src="lib/url-template/url-template.js"></script>
+	<script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+	<script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+	<script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+	<script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+	<script type="text/javascript" src="apigClient.js"></script>
+	<link rel="stylesheet" type="text/css" href="preview/css/new_file.css">    <!-- Photo preview -->
+	<style rel="stylesheet" type="text/css" >
+		.hero {
+			background-image: url('bg.png');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: 0% 50%;
+		}	
+		.containerbox {
+			background-color: rgba(255,255,255,.8);
+			border-radius: 0;
+			padding: 1.5rem
+		}
+        .showImg{
+            max-height: 500px;
+            max-width: 750px;
+        }
+
+	</style>
+
+</head>
+
+<body>
+	<header>
+		<div class="navbar navbar-dark bg-dark shadow-sm">
+			<div class="container d-flex justify-content-between">
+				<a href="" class="navbar-brand d-flex align-items-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+					<strong>Welcom to Days of Future Past</strong>
+				</a>
+			</div>
+		</div>
+    </header>
+    <main role="main">
+		<section class="jumbotron text-center hero">
+			<div class="container containerbox">
+				<h1 class="jumbotron-heading">Days of Future Past</h1>
+				<p class="lead text-muted">Upload your historical black-and-white photos here, we will take you to the days of future past.</p>
+				<p>
+					<label for="file-input">
+						<a  id = "upload" class="btn btn-primary my-2">Upload</a>
+					</label>
+					<input style="display:none" id="file-input" type="file" name="files[]">
+				</p>
+			</div>
+		</section>
+		<div class="album py-5 bg-light">
+			<div class="container">
+				<div class="row" id="cool">
+									
+				</div>
+			</div>
+		</div>
+    </main>
+	
+	<div class="PreviewBox"></div>
+	<div class="picture">
+	<div class="picture_top">
+		<a class="close" href="###">×</a></div>
+		<div class="picture_body">
+			<div class="picture_up">
+				<div class="picture_img">
+					<img src="" class="showImg" />
+				</div>
+			</div>
+			<div class="picture_down">
+				<div class="picture_suo">
+					<div class="picture_suo_t">
+						<div class="picture_suo_img suo-img">
+							<img class="lazy" id = "a1" src="bg.png" />
+						</div>
+						<div class="picture_suo_img suo-img">
+							<img class="lazy" id = "a2" src="hungry.jpg" />
+						</div>			
+						<div class="picture_suo_img suo-img">
+							<img class="lazy" id = "a3" src="bg.png" />
+						</div>
+						<div class="picture_suo_img suo-img">
+							<img class="lazy" id = "a4" src="hungry.jpg" />
+						</div>
+						<div class="picture_suo_img suo-img">
+							<img class="lazy" id = "a5" src="bg.png" />
+						</div>
+						<div class="picture_suo_img suo-img">
+							<img class="lazy" id = "a6" src="hungry.jpg" />
+						</div>
+						<div class="picture_suo_img suo-img">
+							<img class="lazy" id = "a7" src="bg.png" />
+						</div>					
+					</div>
+				</div>
+			</div>
+			<div class="picture_down">
+				<div class="downbutton"><a href="https://getbootstrap.com/docs/4.1/examples/album/#" class="btn btn-primary my-2 download">Download</a></div>
+			</div>
+		</div>
+	</div>
+	
+
+    <footer class="text-muted">
+		<div class="container">
+			<a href="https://kill.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=42k6h0hllce728msli539bqvm0&redirect_uri=https://s3.amazonaws.com/coms6998projfrontend/index.html">Log out</s>
+		</div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--
+	<script src="./Album example for Bootstrap_files/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="./Album example for Bootstrap_files/popper.min.js"></script>
+    <script src="./Album example for Bootstrap_files/bootstrap.min.js"></script>
+    <script src="./Album example for Bootstrap_files/holder.min.js"></script>
+	-->
+	<!--
+	<svg xmlns="http://www.w3.org/2000/svg" width="288" height="225" viewBox="0 0 288 225" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="14" style="font-weight:bold;font-size:14pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text></svg></body></html>
+	-->
+	
+</body>	
+<script type="text/javascript">
+     function callgood(){
+		console.log(5);
+		
+       	apigClient1.getphotoPost(params1, body1, additionalParams1)
+		.then(function(result){
+              console.log(result);
+              var response_body = JSON.parse(result.data.body);
+				results = response_body.processed;
+				pro = response_body.processing;
+				console.log(response_body.processed);
+				$("#cool").empty();
+				var count = 0;
+				results.forEach(function(result) {
+					if(count%7 == 0){
+						var img = 	"<div class=\"col-md-4\"><div class=\"card mb-4 shadow-sm coloredPic\"><img class=\"card-img-top\" id = \""+"b"+count/7+"\" style=\"height: 225px; width: 100%; display: block;\" src=\""+result+"\"></div></div>";
+						$("#cool").append(img);
+						$(".col-md-4").on("click",".coloredPic",
+		function() {
+			var src = $(this).find("img").attr("src");
+			var idx = $(this).find("img").attr("id");
+			var skrr = idx.substring(1);
+			$('.showImg').attr("src", src);
+			console.log($(this).find("img").attr("src"));
+			$('#a1').attr("src", results[skrr*7+0]);
+			$('#a2').attr("src", results[skrr*7+1]);
+			$('#a3').attr("src", results[skrr*7+2]);
+			$('#a4').attr("src", results[skrr*7+3]);
+			$('#a5').attr("src", results[skrr*7+4]);
+			$('#a6').attr("src", results[skrr*7+5]);
+			$('#a7').attr("src", results[skrr*7+6]);
+			$("img").trigger("click2")
+			$(".picture").css("display", "block");
+			$(".PreviewBox").css("display", "block");
+		}
+	);
+				    }
+				    count++;
+
+				});	
+		for(var i = 0; i < pro;i++) 
+		{
+                 var img = 	"<div class=\"col-md-4\"><div class=\"card mb-4 shadow-sm\"><img class=\"card-img-top\" id = \""+"c"+i+"\" style=\"height: 225px; width: 100%; display: block;\" src=\"data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22208%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20208%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_167cb046197%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A11pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_167cb046197%22%3E%3Crect%20width%3D%22208%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2266.953125%22%20y%3D%22117.3%22%3EProcessing%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E\"></div></div>";
+						$("#cool").append(img);
+		}		
+
+	$(".close").click(function() {
+		$(".picture").css("display", "none");
+		$(".PreviewBox").css("display", "none");
+	});
+
+	$('.picture_suo_img img').each(function() {
+		$(this).click(function() {
+			var src = $(this).attr('src');
+			$('.showImg').attr('src', src);
+			$('.download').attr('href',src);
+		});
+	});
+
+	$(".picture_suo_img").click(function() {
+		$(".picture_suo_img").siblings(".suo-img").removeClass('suo-img');
+		$(this).addClass('suo-img');
+	});		
+		}).catch( function(result){
+			console.log(result)
+		});	
+		setTimeout(callgood,5000);		
+	}
+     
+
+
+     function check(){
+      var type="";
+     if(document.getElementById("file-input").value!=''){
+      type=document.getElementById("file-input").value.match(/^(.*)(\.)(.{1,8})$/)[3];
+         type=type.toUpperCase();
+     }
+    
+       if(type!="JPEG"   &&   type!="PNG"   &&   type!="JPG"){
+        alert("You can only upload format of jpeg, jpg, png");  
+        return false;
+       } 
+       else{
+       	return true;
+       }
+     } 
+
+	function getUsername() {
+		//return "kunjian";
+		var abc = window.location.href;
+		var query = abc.split('#');
+		var vars = query[1].split('&');
+		var ma = vars[0].split('=');
+		var base64Url = ma[1].split('.')[1];
+		var base64 = base64Url.replace('-', '+').replace('_', '/');
+		var user = JSON.parse(window.atob(base64))["cognito:username"];
+		return user
+	}
+    
+    $('.close').attr("href",window.location.href);
+    $('strong').text($('strong').text()+', '+getUsername());
+	var apigClient1 = apigClientFactory.newClient();           //Get user's photos
+	var params1 = {
+			
+	};
+	var body1 = {
+		"user": getUsername(),
+	};
+	var additionalParams1 = {
+		
+	};
+	apigClient1.getphotoPost(params1, body1, additionalParams1)
+		.then(function(result){
+              console.log(result);
+              var response_body = JSON.parse(result.data.body);
+				results = response_body.processed;
+				console.log(response_body.processed);
+				//$("#cool").empty();
+				var count = 0;
+				results.forEach(function(result) {
+					if(count%7 == 0){
+						var img = 	"<div class=\"col-md-4\"><div class=\"card mb-4 shadow-sm coloredPic\"><img class=\"card-img-top\" id = \""+"b"+count/7+"\" style=\"height: 225px; width: 100%; display: block;\" src=\""+result+"\"></div></div>";
+						$("#cool").append(img);
+						$(".col-md-4").on("click",".coloredPic",
+		function() {
+			var src = $(this).find("img").attr("src");
+			var idx = $(this).find("img").attr("id");
+			var skrr = idx.substring(1);
+			$('.showImg').attr("src", src);
+			console.log($(this).find("img").attr("src"));
+			$('#a1').attr("src", results[skrr*7+0]);
+			$('#a2').attr("src", results[skrr*7+1]);
+			$('#a3').attr("src", results[skrr*7+2]);
+			$('#a4').attr("src", results[skrr*7+3]);
+			$('#a5').attr("src", results[skrr*7+4]);
+			$('#a6').attr("src", results[skrr*7+5]);
+			$('#a7').attr("src", results[skrr*7+6]);
+			$("img").trigger("click2")
+			$(".picture").css("display", "block");
+			$(".PreviewBox").css("display", "block");
+		}
+	);
+				    }
+				    count++;
+
+				});	
+					
+
+	$(".close").click(function() {
+		$(".picture").css("display", "none");
+		$(".PreviewBox").css("display", "none");
+	});
+
+	$('.picture_suo_img img').each(function() {
+		$(this).click(function() {
+			var src = $(this).attr('src');
+			$('.showImg').attr('src', src);
+			$('.download').attr('href',src);
+		});
+	});
+
+	$(".picture_suo_img").click(function() {
+		$(".picture_suo_img").siblings(".suo-img").removeClass('suo-img');
+		$(this).addClass('suo-img');
+	});		
+		}).catch( function(result){
+			console.log(result)
+		});	
+			setTimeout(callgood,5000);			
+	
+	$("#file-input").change(function(){
+		console.log(3);
+		var data = document.getElementById('file-input').files[0];
+		if (data&&check()) {
+			// create reader
+			var xhr = new XMLHttpRequest();
+			xhr.withCredentials = true;
+			xhr.addEventListener("readystatechange", function () {
+				console.log(this.responseText);
+				if (this.readyState === 4) {
+					console.log(this.responseText);
+				}
+			});
+			xhr.withCredentials = false;
+			xhr.open("PUT", " https://fcev8v3gbb.execute-api.us-east-1.amazonaws.com/stage1/upload?key="+data.name);
+			console.log(data.type)
+			xhr.setRequestHeader("Content-Type", "image/jpeg");
+			xhr.onload = function (event) {
+				$("ul").append("<li>Uploaded: " + data.name + "</li>");
+			};
+			xhr.send(data);
+			console.log(1);
+		
+		
+		var apigClient2 = apigClientFactory.newClient();
+		var params2 = {
+
+		};
+		console.log(data.name);
+		console.log(getUsername());
+		var body2 = {
+			"user": getUsername(),
+			"image": data.name 
+		};
+		var additionalParams2 = {
+			
+		};
+		apigClient2.recorddatabasePost(params2, body2, additionalParams2)
+			.then(function(result){
+				console.log("succuss");
+			}).catch( function(result){
+				//This is where you would put an error callback
+				console.log(result);
+			});		
+			
+
+			}	
+    	});
+    
+	
+</script>
+<script type="text/javascript">
+
+
+	 　
+
+	</script>
+
+
+
+
+
+
+
+
