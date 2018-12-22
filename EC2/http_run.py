@@ -12,10 +12,10 @@ import socket
 my_hostname = socket.gethostname()
 my_ip = socket.gethostbyname(my_hostname)
 
-client = pymongo.MongoClient("mongodb+srv://kunjian:iotproject@cluster0-ttnra.mongodb.net/test?retryWrites=true")
+client = pymongo.MongoClient("")
 mydb = client["Cloud-Computing"]
-aws_access_key_id = "AKIAJCCF7ONELNKCD5KA"
-aws_secret_access_key = "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"
+aws_access_key_id = ""
+aws_secret_access_key = ""
 BUCKET_NAME = "6998project"
 
 
@@ -30,7 +30,7 @@ def s3setup():
     return s3
 
 def processimg(img_in, s3, IsColorize = True, IsStyle = True,):
-
+AKIAJCCF7ONELNKCD5KA
     style_list = ["wave", "scream", "la_muse", "rain_princess", "udnie", "wreck"]
 
     if IsStyle:
