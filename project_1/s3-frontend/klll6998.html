@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Foodie Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="KzXKPTWl5EI5VOe5OHYnhd7HP48.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/botui/build/botui.min.css" />
+    <link rel="stylesheet" href="default_style.css"></link>
+    <meta name="description" content="Greeting">
+  </head>
+  <body>
+    <style language="text/css">
+        body{
+            background-color: #FFE4E1
+        }
+    </style>
+    <div class="botui-app-container" id="stars-bot">
+      <bot-ui></bot-ui>
+    </div>
+   <script type="text/javascript" src="lib/aws-sdk.min.js"></script>
+    <script type="text/javascript" src="lib/aws-cognito-sdk.min.js"></script>
+    <script type="text/javascript" src="lib/amazon-cognito-identity.min.js"></script>
+    <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="apigClient.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue/2.0.5/vue.min.js"></script>
+    <script src="https://unpkg.com/botui/build/botui.js"></script>
+    <script type="text/javascript">
+        var loadingMsgIndex,
+    botui = new BotUI('stars-bot'),
+    API = 'https://api.github.com/repos/';
+
+               
+    
+function init(){
+    botui.message.bot({
+            delay: 1000,
+        content: 'Hi, I am a beautiful chatbot'
+        }).then(conversation)
+}
+
+function conversation() {
+    botui.action.text({
+      delay: 1000,
+      action: {
+        placeholder: 'Enter you wanna say here.'
+      }
+    }).then(function (res) {
+    loadingMsgIndex = botui.message.bot({
+      delay: 200,
+      loading: true
+    }).then(function (index) {
+      loadingMsgIndex = index;
+      showResponse(res.value)
+    });
+  });
+}
+
+function showResponse(request) {
+    let params = {
+        "Content-Type": "application/json"
+    };
+    let body = {
+      "request": request
+    };
+    let additionalParams = {
+
+    };
+    let response = "";
+     AWS.config.region = 'us-east-1'; // Region
+               
+
+
+var poolData = {
+    UserPoolId : 'us-east-1_xn4dsIRGM', // your user pool id here
+    ClientId : '42k6h0hllce728msli539bqvm0' // your app client id here
+};
+var userPool = 
+new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+    var cognitoUser = userPool.getCurrentUser();
+     console.log(cognitoUser.username);
+      console.log(cognitoUser == null);
+
+if (cognitoUser != null) {
+     console.log(2);
+    cognitoUser.getSession(function(err, result) {
+        if (result) {
+            console.log('You are now logged in.');
+
+            // Add the User's Id Token to the Cognito credentials login map.
+             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: 'us-east-1:6b47a8cf-61ee-4d58-a928-4e4bf6a796a2',
+                Logins: {
+                    'cognito-idp.us-east-1.amazonaws.com/us-east-1_xn4dsIRGM': result.getIdToken().getJwtToken()
+                }
+            }); 
+             console.log(typeof result.getIdToken().getJwtToken());
+                
+                
+                AWS.config.credentials.get(function(){
+                  
+    // Credentials will be available when this function is called.
+                    var accessKeyId = AWS.config.credentials.accessKeyId;
+                    var secretAccessKey = AWS.config.credentials.secretAccessKey;
+                    var sessionToken = AWS.config.credentials.sessionToken;
+                    
+                    console.log(accessKeyId);
+                    console.log(secretAccessKey);
+                    let apigClient = apigClientFactory.newClient({
+                        accessKey: accessKeyId,
+                        secretKey: secretAccessKey,
+                        sessionToken: sessionToken,
+                        region: "us-east-1",
+                        apiKey:  'ahQu35Lmxn6vIcLkJnlCMadIvsUD8Zfi30F8nUE0'
+                    });
+                   
+    apigClient.chatbotPost(params,body,additionalParams).then(function(result){
+      response = JSON.stringify(result["data"]);
+    }).then(function(){
+        botui.message.update(loadingMsgIndex,{
+            content: response
+        }).then(conversation);
+    }); 
+       });
+ }
+    });
+}
+
+ // ask again for repo. Keep in loop.
+}
+
+init();
+    
+
+    </script>
+    
+  </body>
+</html>
+
